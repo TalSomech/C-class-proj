@@ -4,30 +4,31 @@
 int main() {
     int acc;
     char k='O';
+    int n=0;
     while(k!= 'E') {
-        printf("\nTransactions:\n"
-               "\'O': Open new account \n"
-               "\'B' : Print balance\n"
-               "\'D' : Deposit \n"
-               "\'W' : Withdrawal \n"
-               "\'C' : Close account\n"
-               "\'I' : Add interest to all active accounts\n"
-               "\'P' : Print all active accounts\n"
-               "\'E' : Close all accounts and exit program\n"
-               "\nTransaction: ");
-
+        printf("\nPlease choose a transaction type:\n"
+               "O-Open Account\n"
+               "B-Balance Inquiry\n"
+               "D-Deposit\n"
+               "W-Withdrawal\n"
+               "C-Close Account\n"
+               "I-Interest\n"
+               "P-Print\n"
+               "E-Exit\n");
             scanf(" %c", &k);
-            while(getchar()!= '\n'&& k!=EOF){}
                 if (k == 'B' || k == 'D' || k == 'W' || k == 'C') {
-                    printf("Enter account number: ");
-                    scanf(" %d", &acc);
+                    printf("Please enter account number: ");
+                    n=scanf(" %d", &acc);
+                    printf("%d",n);
+                    if(n==0){
+                        printf("Failed to read account number");
+                        continue;
+                    }
                     acc -= 901;
-
                 }
                 switch (k) {
                     case 'O': {
                         init();
-
                         break;
                     }
                     case 'B': {
@@ -59,12 +60,10 @@ int main() {
                         break;
                     }
                     default: {
-                        printf("Invalid transaction , please try again \n");
+                        printf("Invalid transaction type\n");
                         break;
                     }
                 }
-
     }
-    printf("Thank you! come again! \n");
     return 0;
 }
